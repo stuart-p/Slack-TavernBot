@@ -1,29 +1,33 @@
 display_information:
-  name: Getting Started Bolt App
+  name: Tavern Bot
 features:
   app_home:
     home_tab_enabled: false
     messages_tab_enabled: true
     messages_tab_read_only_enabled: false
   bot_user:
-    display_name: BoltApp
+    display_name: TavernBot
     always_online: true
 oauth_config:
   scopes:
+    user:
+      - reminders:write
     bot:
       - channels:history
       - channels:join
-      - commands
       - chat:write
       - im:history
+      - reminders:write
+      - reminders:read
 settings:
   event_subscriptions:
+    request_url: https://7eb6-2a01-4b00-e406-5f00-d494-be3e-14dc-a019.ngrok.io/slack/events
     bot_events:
       - message.channels
       - message.im
   interactivity:
     is_enabled: true
+    request_url: https://7eb6-2a01-4b00-e406-5f00-d494-be3e-14dc-a019.ngrok.io/slack/events
   org_deploy_enabled: false
-  socket_mode_enabled: true
-  is_hosted: false
+  socket_mode_enabled: false
   token_rotation_enabled: false

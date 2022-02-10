@@ -1,0 +1,51 @@
+service: tavern-bot-slack-app
+frameworkVersion: "3.1.1"
+useDotenv: true
+package:
+  patterns:
+    - "!tmp/**"
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:PutObject
+        - s3:GetObject
+        - s3:ListBucket
+        - s3:PostObject
+        - s3:ListAllBuckets
+      Resource:
+        - arn:aws:s3:::${env:BUCKET_NAME}
+        - arn:aws:s3:::${env:BUCKET_NAME}/*
+  environment:
+    SLACK_SIGNING_SECRET: ${env:SLACK_SIGNING_SECRET}
+    SLACK_BOT_TOKEN: ${env:SLACK_BOT_TOKEN}
+    SLACK_USER_TOKEN: ${env:SLACK_USER_TOKEN}
+    BUCKET_NAME: ${env:BUCKET_NAME}
+functions:
+  slack:
+    handler: src/app.handler
+    events:
+      - http:
+          path: slack/events
+          method: post
+resources:
+  Resources:
+    Bucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${env:BUCKET_NAME}
+        VersioningConfiguration:
+          Status: Enabled
+        CorsConfiguration:
+          CorsRules:
+            - AllowedHeaders: ["*"]
+              AllowedMethods: [GET, PUT, POST]
+              AllowedOrigins: ["*"]
+              Id: CORSRuleId1
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript

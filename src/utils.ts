@@ -2,7 +2,6 @@ import { fetchPubList } from "./api";
 
 export const chooseRandomPub = async () => {
   const directoryObject = await fetchPubList();
-  console.log(directoryObject);
   return directoryObject.pubList[
     Math.floor(Math.random() * directoryObject.pubList.length)
   ];
@@ -38,7 +37,7 @@ export const calculateUTCAlarmTime = (timeSelection: string) => {
 };
 
 export const spaceToCentraliseText = (pubName: string) => {
-  const maxSpace = 28;
+  const maxSpace = 30;
   const spaceToLeave = Math.max(0, Math.floor((maxSpace - pubName.length) / 2));
 
   return " ".repeat(spaceToLeave);

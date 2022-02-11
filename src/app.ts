@@ -20,7 +20,6 @@ const app = new App({
 });
 
 app.message(/(?:tavern\s*bot)/gim, async ({ body, message, say }) => {
-  console.log(body);
   const { user } = message as GenericMessageEvent;
   await displayWelcomeDashboard(user, say);
 });

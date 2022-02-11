@@ -66,23 +66,23 @@ export const displayWelcomeDashboard = async (userName: string, say: SayFn) => {
           action_id: "dashboard_button_random",
         },
       },
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: "Generate a pub crawl :walking::beers::walking::beers:",
-        },
-        accessory: {
-          type: "button",
-          text: {
-            type: "plain_text",
-            text: "Pubcrawl",
-            emoji: true,
-          },
-          value: "pubcrawl",
-          action_id: "dashboard_button_pubcrawl",
-        },
-      },
+      // {
+      //   type: "section",
+      //   text: {
+      //     type: "mrkdwn",
+      //     text: "Generate a pub crawl :walking::beers::walking::beers:",
+      //   },
+      //   accessory: {
+      //     type: "button",
+      //     text: {
+      //       type: "plain_text",
+      //       text: "Pubcrawl",
+      //       emoji: true,
+      //     },
+      //     value: "pubcrawl",
+      //     action_id: "dashboard_button_pubcrawl",
+      //   },
+      // },
     ],
     text: "Welcome to tavern bot",
   });

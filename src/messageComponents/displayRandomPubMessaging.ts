@@ -16,22 +16,13 @@ export const displayRandomPubMessaging = async (
           type: "mrkdwn",
           text: `:beer: A trip to the local watering hole you say? :heart_eyes: Huzzah, great idea <@${userName}>! :beer: \n\n I choose.... 
           \`\`\`
-   ______________________________
- / \\                             \\.
-|   |                            |.
- \\_ |                            |.
-    |                            |.
-    |                            |.
-    |                            |.
-    |${spaceToCentraliseText(chosen.name)}${chosen.name}${spaceToCentraliseText(
+     ┌───────── •✧✧•''•✧✧• ─────────┐
+     -${spaceToCentraliseText(chosen.name)}${
             chosen.name
-          )}|.
-    |                            |.
-    |                            |.
-    |                            |.
-    |   _________________________|___
-    |  /                            /.
-    \\_/____________________________/.
+          }${spaceToCentraliseText(chosen.name)}${
+            chosen.name.length % 2 === 1 && " "
+          }- 
+     └───────── •✧✧•''•✧✧• ─────────┘
           \`\`\``,
         },
       },

@@ -1,67 +1,49 @@
-# Getting Started ⚡️ Bolt for JavaScript
-> Slack app example from 📚 [Getting started with Bolt for JavaScript tutorial][1]
+<h1 align="center">Welcome to Slack-Tavern-Bot 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+  <a href="https://slack.dev/bolt-js/concepts" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="#" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+  <a href="https://twitter.com/StuartDPalmer" target="_blank">
+    <img alt="Twitter: StuartDPalmer" src="https://img.shields.io/twitter/follow/StuartDPalmer.svg?style=social" />
+  </a>
+</p>
 
-## Overview
+> A Slack Bot for suggesting pubs to visit
 
-This is a Slack app built with the [Bolt for JavaScript framework][2] that showcases
-responding to events and interactive buttons.
+## Install
 
-## Running locally
-
-### 0. Create a new Slack App
-
-- Go to https://api.slack.com/apps
-- Click **Create App**
-- Choose a workspace
-- Enter App Manifest using contents of `manifest.yaml`
-- Click **Create**
-
-Once the app is created click **Install to Workspace** 
-Then scroll down in Basic Info and click **Generate Token and Scopes** with both scopes
-
-### 1. Setup environment variables
-
-```zsh
-# Replace with your bot and app token
-export SLACK_BOT_TOKEN=<your-bot-token> # from the OAuth section
-export SLACK_APP_TOKEN=<your-app-level-token> # from the Basic Info App Token Section
-```
-
-### 2. Setup your local project
-
-```zsh
-# Clone this project onto your machine
-git clone https://github.com/slackapi/bolt-js-getting-started-app.git
-
-# Change into the project
-cd bolt-js-getting-started-app/
-
-# Install the dependencies
+```sh
 npm install
 ```
 
-### 3. Start servers
-```zsh
-npm run start
+## Usage
+
+```sh
+serverless offline
 ```
 
-### 4. Test
+## Run tests
 
-Go to the installed workspace and type **Hello** in a DM to your new bot. You can also type **Hello** in a channel where the bot is present
+```sh
+npm run test
+```
 
-## Contributing
+## Author
 
-### Issues and questions
+👤 **Stuart Palmer**
 
-Found a bug or have a question about this project? We'd love to hear from you!
+- Twitter: [@StuartDPalmer](https://twitter.com/StuartDPalmer)
+- Github: [@stuart-p](https://github.com/stuart-p)
+- LinkedIn: [@https:\/\/www.linkedin.com\/in\/stuart-palmer-a0686139\/](https://linkedin.com/in/stuart-palmer-a0686139/)
 
-1. Browse to [slackapi/bolt-js/issues][4]
-1. Create a new issue
-1. Select the `[x] examples` category
+## Show your support
 
-See you there and thanks for helping to improve Bolt for everyone!
+Give a ⭐️ if this project helped you!
 
-[1]: https://slack.dev/bolt-js/tutorial/getting-started
-[2]: https://slack.dev/bolt-js/
-[3]: https://slack.dev/bolt-js/tutorial/getting-started#setting-up-events
-[4]: https://github.com/slackapi/bolt-js/issues/new
+---
+
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

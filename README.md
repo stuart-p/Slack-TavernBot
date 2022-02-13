@@ -35,6 +35,7 @@ create a `.env` file in the root directory, and add the following variables:
 SLACK_BOT_TOKEN=<your-bot-token> # from the OAuth section
 SLACK_USER_TOKEN=<your-user-token> # from OAuth section
 APP_TOKEN=<your-app-level-token> # from the Basic Info App Token Section
+SLACK_SIGNING_SECRET=<your-app-signing-secret> # from Basic Info - App signing Section
 BUCKET_NAME=<your-aws-s3-bucket-name> # choose a uniquely-named storage bucket
 ```
 

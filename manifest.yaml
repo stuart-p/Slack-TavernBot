@@ -1,5 +1,24 @@
 display_information:
   name: Tavern Bot
+  description: I need a beer...
+  background_color: "#c55100"
+  long_description: "Greetings, I'm TavernBot :robot_face:\r
+
+    \r
+
+    I keep a directory of pubs/bars/venues that your team likes, and can suggest where to go for your next get together.\r
+
+    \r
+
+    You can summon me simply by typing my name - 'TavernBot' - either in a direct message to me, or in one of the channels I'm deployed in, usually 'general' or 'random'.\r
+
+    \r
+
+    I was created by Stuart Palmer, using Slack Bolt JS and hosted on AWS Lambda. My code is located here: https://github.com/stuart-p/Slack-TavernBot\r
+
+    \r
+
+    v1.00 - Initial release; add pubs to the directory, and request the name of a pub from the list"
 features:
   app_home:
     home_tab_enabled: false
@@ -21,13 +40,13 @@ oauth_config:
       - reminders:read
 settings:
   event_subscriptions:
-    request_url: https://7eb6-2a01-4b00-e406-5f00-d494-be3e-14dc-a019.ngrok.io/slack/events
+    request_url: https://99b3-2a01-4b00-e406-5f00-b1fa-e140-4043-7889.ngrok.io/dev/slack/events
     bot_events:
       - message.channels
       - message.im
   interactivity:
     is_enabled: true
-    request_url: https://7eb6-2a01-4b00-e406-5f00-d494-be3e-14dc-a019.ngrok.io/slack/events
+    request_url: https://99b3-2a01-4b00-e406-5f00-b1fa-e140-4043-7889.ngrok.io/dev/slack/events
   org_deploy_enabled: false
   socket_mode_enabled: false
   token_rotation_enabled: false

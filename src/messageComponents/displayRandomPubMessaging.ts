@@ -20,7 +20,7 @@ export const displayRandomPubMessaging = async (
      -${spaceToCentraliseText(chosen.name)}${
             chosen.name
           }${spaceToCentraliseText(chosen.name)}${
-            chosen.name.length % 2 === 1 && " "
+            chosen.name.length % 2 === 1 ? " " : ""
           }- 
      └───────── •✧✧•''•✧✧• ─────────┘
           \`\`\``,

@@ -1,12 +1,12 @@
 service: tavern-bot-slack-app
-frameworkVersion: "3.1.1"
+frameworkVersion: "3.2.0"
 useDotenv: true
 package:
   patterns:
     - "!tmp/**"
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs14.x
   region: us-east-1
   iamRoleStatements:
     - Effect: Allow

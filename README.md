@@ -37,6 +37,7 @@ SLACK_USER_TOKEN=<your-user-token> # from OAuth section
 APP_TOKEN=<your-app-level-token> # from the Basic Info App Token Section
 SLACK_SIGNING_SECRET=<your-app-signing-secret> # from Basic Info - App signing Section
 BUCKET_NAME=<your-aws-s3-bucket-name> # choose a uniquely-named storage bucket
+MAP_TOKEN=<your-google-maps-api-key> # setup a Google Maps API key for fetching static map images
 ```
 
 ### 2. Install dependencies

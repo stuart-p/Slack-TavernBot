@@ -9,6 +9,9 @@ import { displayWelcomeDashboard } from "./messageComponents/displayWelcomeDashb
 import { displayRandomPubMessaging } from "./messageComponents/displayRandomPubMessaging";
 import { addPubModal } from "./messageComponents/addPubModal";
 import { updatePubList } from "./api";
+import { showLocationModal } from "./messageComponents/showLocationModal";
+import { displaySetAlarm } from "./messageComponents/displaySetAlarm";
+import { displayRatingMessage } from "./messageComponents/displayRatingMessage";
 
 const awsLambdaReceiver = new AwsLambdaReceiver({
   signingSecret: process.env.SLACK_SIGNING_SECRET ?? "not found",
@@ -19,11 +22,18 @@ const app = new App({
   receiver: awsLambdaReceiver,
 });
 
+/**
+ * This is the gateway function the bot.
+ * Typing the summoning word into an active channel will trigger the welcome dashboard
+ */
 app.message(/(?:tavern\s*bot)/gim, async ({ body, message, say }) => {
   const { user } = message as GenericMessageEvent;
   await displayWelcomeDashboard(user, say);
 });
 
+/**
+ * The following actions occur when interactions are made with the various buttons within the bot.
+ */
 app.action("selectedTime", async ({ ack }) => {
   await ack();
 });
@@ -43,6 +53,48 @@ app.action("dashboard_button_add", async ({ ack, body, client }) => {
   });
 });
 
+app.action("random_pub_map", async ({ ack, body, client }) => {
+  const { trigger_id } = body as any;
+  await ack();
+  const pubName = (await readFile("/tmp/chosen.txt", "utf-8")) || "the bar";
+  const pubLocation =
+    (await readFile("/tmp/location.txt", "utf-8")) || "M4 2AF";
+  await client.views.open({
+    trigger_id,
+    view: showLocationModal(pubName, pubLocation),
+  });
+});
+
+app.action("random_pub_confirm", async ({ ack, body, say }) => {
+  const user = body.user.id;
+  const channel = body.channel?.id ?? "";
+  const pubName = (await readFile("/tmp/chosen.txt", "utf-8")) || "the bar";
+  const pubArrayPos = (await readFile("/tmp/arrayPos.txt", "utf-8")) || "0";
+  await ack();
+  await displaySetAlarm(user, say);
+  await app.client.chat.scheduleMessage(
+    displayRatingMessage(pubName, pubArrayPos, channel)
+  );
+});
+
+app.action("addAlarmButton", async ({ body, ack, say }) => {
+  const { selected_time } = (body as any).state.values["alarm-action"][
+    "selectedTime"
+  ];
+  const alarmTime = calculateUTCAlarmTime(selected_time);
+  const pubName = (await readFile("/tmp/chosen.txt", "utf-8")) || "the bar";
+  await ack();
+  await say(`<@${body.user.id}> set an alarm for ${selected_time}`);
+  await app.client.chat.scheduleMessage({
+    channel: body.channel?.id ?? "",
+    text: `<!channel>:beers: It's time to go to the pub! :tada: See you at *${pubName}* :beer:`,
+    post_at: alarmTime,
+  });
+});
+
+/**
+ * The view element captures behaviour from within the add pub modal window
+ */
 app.view("addpub_view_1", async ({ ack, body, view, client }) => {
   const listedBy = body.user.id;
   const name =
@@ -63,21 +115,6 @@ app.view("addpub_view_1", async ({ ack, body, view, client }) => {
   await client.chat.postMessage({
     channel: listedBy,
     text: "Thanks for submitting a new entry! If you'd like to interact with me again just type 'tavernbot' in one of my active channels",
-  });
-});
-
-app.action("addAlarmButton", async ({ body, ack, say }) => {
-  const { selected_time } = (body as any).state.values["alarm-action"][
-    "selectedTime"
-  ];
-  const alarmTime = calculateUTCAlarmTime(selected_time);
-  const pubName = (await readFile("/tmp/chosen.txt", "utf-8")) || "the bar";
-  await ack();
-  await say(`<@${body.user.id}> set an alarm for ${selected_time}`);
-  app.client.chat.scheduleMessage({
-    channel: body.channel?.id ?? "",
-    text: `<!channel>:beers: It's time to go to the pub! :tada: See you at *${pubName}* :beer:`,
-    post_at: alarmTime,
   });
 });
 

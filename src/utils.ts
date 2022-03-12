@@ -42,3 +42,8 @@ export const spaceToCentraliseText = (pubName: string) => {
 
   return " ".repeat(spaceToLeave);
 };
+
+export const URLEncodePubLocation = (pubLocation: string) => {
+  const encoded = pubLocation.replace(" ", "+");
+  return encoded;
+};

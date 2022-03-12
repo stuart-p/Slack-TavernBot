@@ -8,6 +8,7 @@ export const displayRandomPubMessaging = async (
 ) => {
   const chosen = await chooseRandomPub();
   await writeFile("/tmp/chosen.txt", chosen.name, "utf-8");
+  await writeFile("/tmp/location.txt", chosen.location, "utf-8");
   await say({
     blocks: [
       {
@@ -16,13 +17,11 @@ export const displayRandomPubMessaging = async (
           type: "mrkdwn",
           text: `:beer: A trip to the local watering hole you say? :heart_eyes: Huzzah, great idea <@${userName}>! :beer: \n\n I choose.... 
           \`\`\`
-     ┌───────── •✧✧•''•✧✧• ─────────┐
-     -${spaceToCentraliseText(chosen.name)}${
+┌───────── •✧✧•''•✧✧• ─────────┐
+-${spaceToCentraliseText(chosen.name)}${chosen.name}${spaceToCentraliseText(
             chosen.name
-          }${spaceToCentraliseText(chosen.name)}${
-            chosen.name.length % 2 === 1 ? " " : ""
-          }- 
-     └───────── •✧✧•''•✧✧• ─────────┘
+          )}${chosen.name.length % 2 === 1 ? " " : ""}- 
+└───────── •✧✧•''•✧✧• ─────────┘
           \`\`\``,
         },
       },
@@ -33,34 +32,52 @@ export const displayRandomPubMessaging = async (
         type: "section",
         text: {
           type: "mrkdwn",
-          text: `What time should we leave?`,
+          text: "Show location   :round_pushpin:",
+        },
+        accessory: {
+          type: "button",
+          text: {
+            type: "plain_text",
+            text: "Location",
+            emoji: true,
+          },
+          value: "showMap",
+          action_id: "random_pub_map",
         },
       },
       {
-        type: "actions",
-        block_id: "alarm-action",
-        elements: [
-          {
-            type: "timepicker",
-            initial_time: "16:30",
-            placeholder: {
-              type: "plain_text",
-              text: "Select time",
-              emoji: true,
-            },
-            action_id: "selectedTime",
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: "Choose another...   :shrug:",
+        },
+        accessory: {
+          type: "button",
+          text: {
+            type: "plain_text",
+            text: "Change",
+            emoji: true,
           },
-          {
-            type: "button",
-            text: {
-              type: "plain_text",
-              text: "Set Alarm",
-              emoji: true,
-            },
-            value: "click_me_123",
-            action_id: "addAlarmButton",
+          value: "randomPub",
+          action_id: "dashboard_button_random",
+        },
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: "Lets Go!   :thumbsup:",
+        },
+        accessory: {
+          type: "button",
+          text: {
+            type: "plain_text",
+            text: "Confirm",
+            emoji: true,
           },
-        ],
+          value: "confirmChoice",
+          action_id: "random_pub_confirm",
+        },
       },
     ],
     text: `I suggest we go to ${chosen.name}`,

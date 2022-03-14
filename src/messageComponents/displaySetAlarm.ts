@@ -10,7 +10,7 @@ export const displaySetAlarm = async (userName: string, say: SayFn) => {
         type: "section",
         text: {
           type: "mrkdwn",
-          text: `<@${userName}> confirmed it! Great, what time should we leave?`,
+          text: `<@${userName}> confirmed it! \n\n Great, what time should we leave?`,
         },
       },
       {
@@ -35,7 +35,7 @@ export const displaySetAlarm = async (userName: string, say: SayFn) => {
               emoji: true,
             },
             value: "click_me_123",
-            action_id: "addAlarmButton",
+            action_id: "alarm_set_button",
           },
         ],
       },

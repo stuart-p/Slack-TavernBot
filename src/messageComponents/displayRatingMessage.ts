@@ -1,28 +1,39 @@
+import { calculateUTCRatingScheduledTime } from "../utils";
+
 export const displayRatingMessage = (
   pubName: string,
-  pubArrayPos: number,
-  channel: string
+  pubArrayPos: string,
+  channel: string,
+  delay: number
 ) => {
+  const setSelectValue = (rating: number) => {
+    return `${pubName}|${pubArrayPos}|${rating}`;
+  };
+
   return {
     channel,
+    post_at: calculateUTCRatingScheduledTime(delay),
     blocks: [
       {
         type: "header",
         text: {
           type: "plain_text",
-          text: `:trophy: How would you rate your time at ${pubName}?`,
+          text: `:trophy: How would you rate your time at ${pubName}? :trophy:`,
           emoji: true,
         },
       },
       {
         type: "input",
+        block_id: "rating_block",
         element: {
           type: "static_select",
+
           placeholder: {
             type: "plain_text",
             text: "Select a rating",
             emoji: true,
           },
+          action_id: "rating_vote_action",
           confirm: {
             title: {
               type: "plain_text",
@@ -48,7 +59,7 @@ export const displayRatingMessage = (
                 text: "1",
                 emoji: true,
               },
-              value: `${pubArrayPos}|1`,
+              value: setSelectValue(1),
             },
             {
               text: {
@@ -56,7 +67,7 @@ export const displayRatingMessage = (
                 text: "2",
                 emoji: true,
               },
-              value: `${pubArrayPos}|2`,
+              value: setSelectValue(2),
             },
             {
               text: {
@@ -64,7 +75,7 @@ export const displayRatingMessage = (
                 text: "3",
                 emoji: true,
               },
-              value: `${pubArrayPos}|3`,
+              value: setSelectValue(3),
             },
             {
               text: {
@@ -72,7 +83,7 @@ export const displayRatingMessage = (
                 text: "4",
                 emoji: true,
               },
-              value: `${pubArrayPos}|4`,
+              value: setSelectValue(4),
             },
             {
               text: {
@@ -80,7 +91,7 @@ export const displayRatingMessage = (
                 text: "5",
                 emoji: true,
               },
-              value: `${pubArrayPos}|5`,
+              value: setSelectValue(5),
             },
             {
               text: {
@@ -88,7 +99,7 @@ export const displayRatingMessage = (
                 text: "6",
                 emoji: true,
               },
-              value: `${pubArrayPos}|6`,
+              value: setSelectValue(6),
             },
             {
               text: {
@@ -96,7 +107,7 @@ export const displayRatingMessage = (
                 text: "7",
                 emoji: true,
               },
-              value: `${pubArrayPos}|7`,
+              value: setSelectValue(7),
             },
             {
               text: {
@@ -104,7 +115,7 @@ export const displayRatingMessage = (
                 text: "8",
                 emoji: true,
               },
-              value: `${pubArrayPos}|8`,
+              value: setSelectValue(8),
             },
             {
               text: {
@@ -112,7 +123,7 @@ export const displayRatingMessage = (
                 text: "9",
                 emoji: true,
               },
-              value: `${pubArrayPos}|9`,
+              value: setSelectValue(9),
             },
             {
               text: {
@@ -120,10 +131,9 @@ export const displayRatingMessage = (
                 text: "10",
                 emoji: true,
               },
-              value: `${pubArrayPos}|10`,
+              value: setSelectValue(10),
             },
           ],
-          action_id: "static_select-action",
         },
         label: {
           type: "plain_text",

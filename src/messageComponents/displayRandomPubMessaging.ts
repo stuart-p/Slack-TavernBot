@@ -9,6 +9,7 @@ export const displayRandomPubMessaging = async (
   const chosen = await chooseRandomPub();
   await writeFile("/tmp/chosen.txt", chosen.name, "utf-8");
   await writeFile("/tmp/location.txt", chosen.location, "utf-8");
+  await writeFile("/tmp/arrayPos.txt", chosen.pubArrayPos.toString(), "utf-8");
   await say({
     blocks: [
       {

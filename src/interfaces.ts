@@ -2,7 +2,7 @@ export interface IpubData {
   name: string;
   location: string;
   listedBy: string;
-  votes: Array<{ voter: string; rating: number }>;
+  votes: { [key: string]: number };
 }
 
 export interface IpubList {

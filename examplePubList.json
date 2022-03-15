@@ -1,6 +1,5 @@
 {
   "pubList": [
-    {"name": "The High Street Tavern", "location": "M4 1EY", "listedBy": "Stuart", "votes": [{"voter": "Stuart", "rating":"8"}]},
-      {"name": "Foundry Project", "location": "M4 1BD", "listedBy": "Stuart", "votes": [{"voter": "Stuart", "rating":"5"}]}
+    {"name": "The High Street Tavern", "location": "M4 1EY", "listedBy": "U015XHB8SQ7", "votes": {}}
   ]
 }

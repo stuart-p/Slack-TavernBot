@@ -22,6 +22,7 @@ provider:
     SLACK_BOT_TOKEN: ${env:SLACK_BOT_TOKEN}
     SLACK_USER_TOKEN: ${env:SLACK_USER_TOKEN}
     BUCKET_NAME: ${env:BUCKET_NAME}
+    MAP_KEY: ${env:MAP_KEY}
 functions:
   slack:
     handler: src/app.handler

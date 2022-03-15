@@ -66,6 +66,23 @@ export const displayWelcomeDashboard = async (userName: string, say: SayFn) => {
           action_id: "dashboard_button_random",
         },
       },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: "Show the top-ranked venues :trophy:",
+        },
+        accessory: {
+          type: "button",
+          text: {
+            type: "plain_text",
+            text: "rankings",
+            emoji: true,
+          },
+          value: "choose",
+          action_id: "dashboard_button_rankings",
+        },
+      },
       // {
       //   type: "section",
       //   text: {
